@@ -148,6 +148,31 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// Set the expected user registration data",
+									"var expectedUserData = {",
+									"    \"firstName\": \"Test\",",
+									"    \"lastName\": \"User\",",
+									"    \"email\": \"test@fakesabi1.com\",",
+									"    \"password\": \"myPassword\"",
+									"};",
+									"",
+									"",
+									"var responseData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 201 - Created\", function() {",
+									"    pm.expect(pm.response.code).to.equal(201);",
+									"});",
+									"",
+									"pm.test(\"Response body matches expected user data\", function() {",
+									"    pm.expect(responseData.data.firstName).to.equal(expectedUserData.firstName);",
+									"    pm.expect(responseData.data.lastName).to.equal(expectedUserData.lastName);",
+									"    pm.expect(responseData.data.email).to.equal(expectedUserData.email);",
+									"",
+									"    ",
+									"});",
+									"",
+									"// Set an environment variable to indicate successful registration",
+									"pm.environment.set('registrationStatus', 'success');",
 									""
 								],
 								"type": "text/javascript"
@@ -174,7 +199,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"email\": \"test@fake.com\",\n    \"password\": \"myPassword\"\n}",
+							"raw": "{\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"email\": \"test@fakesabi1.com\",\n    \"password\": \"myPassword\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -239,11 +264,17 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWIxODk0MzAyYWM5YjAwMTMzZTBkZWIiLCJpYXQiOjE3MDYxMzM4Mjd9._WCPmwFLxBpXcKV0XEX0fHuew8JDYtsLWm12jI3YLrY"
+							}
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test2@fake.com\",\n    \"password\": \"myNewPassword\"\n}",
+							"raw": "{\n    \"email\": \"test@fakesabi1.com\",\n    \"password\": \"myPassword\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -298,7 +329,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWIxNTdjZmQyNjQ1MzAwMTNlYzRmNzUiLCJpYXQiOjE3MDYxMjEyMzZ9.w_i0VQj_nVQIfkWmxxiuyy7ANeu_pihbztHZ396sgic"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWIxODk0MzAyYWM5YjAwMTMzZTBkZWIiLCJpYXQiOjE3MDYxMzM5MTh9.QGZiA-KzRBgmSUR-OwpbeXrGhJebowwTTwM0Q4QDnmA"
 							}
 						},
 						"method": "POST",
@@ -359,6 +390,53 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// Set the expected contact data",
+									"var expectedContactData = {",
+									"    \"_id\": \"65b189ca02ac9b00133e0def\",",
+									"    \"firstName\": \"John\",",
+									"    \"lastName\": \"Doe\",",
+									"    \"birthdate\": \"1970-01-01\",",
+									"    \"email\": \"jdoe@fake.com\",",
+									"    \"phone\": \"8005555555\",",
+									"    \"street1\": \"1 Main St.\",",
+									"    \"street2\": \"Apartment A\",",
+									"    \"city\": \"Anytown\",",
+									"    \"stateProvince\": \"KS\",",
+									"    \"postalCode\": \"12345\",",
+									"    \"country\": \"USA\",",
+									"    \"owner\": \"65b1894302ac9b00133e0deb\",",
+									"    \"__v\": 0",
+									"};",
+									"",
+									"",
+									"var responseData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200 - OK\", function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"// Check if the response body matches the expected contact data",
+									"pm.test(\"Response body matches expected contact data\", function() {",
+									"    pm.expect(responseData._id).to.equal(expectedContactData._id);",
+									"    pm.expect(responseData.firstName).to.equal(expectedContactData.firstName);",
+									"    pm.expect(responseData.lastName).to.equal(expectedContactData.lastName);",
+									"    pm.expect(responseData.birthdate).to.equal(expectedContactData.birthdate);",
+									"    pm.expect(responseData.email).to.equal(expectedContactData.email);",
+									"    pm.expect(responseData.phone).to.equal(expectedContactData.phone);",
+									"    pm.expect(responseData.street1).to.equal(expectedContactData.street1);",
+									"    pm.expect(responseData.street2).to.equal(expectedContactData.street2);",
+									"    pm.expect(responseData.city).to.equal(expectedContactData.city);",
+									"    pm.expect(responseData.stateProvince).to.equal(expectedContactData.stateProvince);",
+									"    pm.expect(responseData.postalCode).to.equal(expectedContactData.postalCode);",
+									"    pm.expect(responseData.country).to.equal(expectedContactData.country);",
+									"    pm.expect(responseData.owner).to.equal(expectedContactData.owner);",
+									"    pm.expect(responseData.__v).to.equal(expectedContactData.__v);",
+									"",
+									"    ",
+									"});",
+									"",
+									"// Set an environment variable to indicate successful verification",
+									"pm.environment.set('verificationStatus', 'success');",
 									""
 								],
 								"type": "text/javascript"
@@ -366,6 +444,12 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWIxODk0MzAyYWM5YjAwMTMzZTBkZWIiLCJpYXQiOjE3MDYxMzM5MTh9.QGZiA-KzRBgmSUR-OwpbeXrGhJebowwTTwM0Q4QDnmA"
+							}
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -374,7 +458,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://thinking-tester-contact-list.herokuapp.com/contacts"
+						"url": "https://thinking-tester-contact-list.herokuapp.com/contacts/65b189ca02ac9b00133e0def"
 					},
 					"response": [
 						{
@@ -406,13 +490,28 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has updated contact information\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.firstName).to.equal(\"Amy\");",
+									"    pm.expect(jsonData.lastName).to.equal(\"Miller\");",
+									"",
+									"});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWIxODk0MzAyYWM5YjAwMTMzZTBkZWIiLCJpYXQiOjE3MDYxMzM5MTh9.QGZiA-KzRBgmSUR-OwpbeXrGhJebowwTTwM0Q4QDnmA"
+							}
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -430,7 +529,7 @@
 								}
 							}
 						},
-						"url": "https://thinking-tester-contact-list.herokuapp.com/contacts/{{contactId}}"
+						"url": "https://thinking-tester-contact-list.herokuapp.com/contacts/65b189ca02ac9b00133e0def"
 					},
 					"response": [
 						{
