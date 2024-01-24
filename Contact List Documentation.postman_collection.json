@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "9a12a28b-d194-4602-91f2-74c142157028",
+		"name": "Contact List Documentation",
+		"description": "This is the API for the Contact List App: \nhttps://thinking-tester-contact-list.herokuapp.com/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "Get Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://thinking-tester-contact-list.herokuapp.com/contacts/{{contactId}}"
+					},
+					"response": [
+						{
+							"name": "Get Contact",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": "https://thinking-tester-contact-list.herokuapp.com/contacts/{{contactId}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6085a221fcfc72405667c3d4\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"birthdate\": \"1970-01-01\",\n    \"email\": \"jdoe@fake.com\",\n    \"phone\": \"8005555555\",\n    \"street1\": \"1 Main St.\",\n    \"street2\": \"Apartment A\",\n    \"city\": \"Anytown\",\n    \"stateProvince\": \"KS\",\n    \"postalCode\": \"12345\",\n    \"country\": \"USA\",\n    \"owner\": \"6085a21efcfc72405667c3d4\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Anna\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://thinking-tester-contact-list.herokuapp.com/contacts/{{contactId}}",
+						"description": "The PATCH Update Contact operation is not available through the UI."
+					},
+					"response": [
+						{
+							"name": "Update Contact",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Anna\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://thinking-tester-contact-list.herokuapp.com/contacts/{{contactId}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6085a221fcfc72405667c3d4\",\n    \"firstName\": \"Anna\",\n    \"lastName\": \"Miller\",\n    \"birthdate\": \"1992-02-02\",\n    \"email\": \"amiller@fake.com\",\n    \"phone\": \"8005554242\",\n    \"street1\": \"13 School St.\",\n    \"street2\": \"Apt. 5\",\n    \"city\": \"Washington\",\n    \"stateProvince\": \"QC\",\n    \"postalCode\": \"A1B2D4\",\n    \"country\": \"Canada\"\n    \"owner\": \"6085a21efcfc72405667c3d4\",\n    \"__v\": 0\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get User Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://thinking-tester-contact-list.herokuapp.com/users/me",
+						"description": "The GET User Profile operation is not available through the UI."
+					},
+					"response": [
+						{
+							"name": "Get User Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": "https://thinking-tester-contact-list.herokuapp.com/users/me"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"608b2db1add2691791c04c89\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"email\": \"test@fake.com\",\n    \"__v\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Updated\",\n    \"lastName\": \"Username\",\n    \"email\": \"test2@fake.com\",\n    \"password\": \"myNewPassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://thinking-tester-contact-list.herokuapp.com/users/me",
+						"description": "The PATCH Update User operation is not available through the UI."
+					},
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Updated\",\n    \"lastName\": \"Username\",\n    \"email\": \"test2@fake.com\",\n    \"password\": \"myNewPassword\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://thinking-tester-contact-list.herokuapp.com/users/me"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"608b2db1add2691791c04c89\",\n    \"firstName\": \"Updated\",\n    \"lastName\": \"Username\",\n    \"email\": \"test2@fake.com\",\n    \"__v\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Log Out User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://thinking-tester-contact-list.herokuapp.com/users/logout"
+					},
+					"response": [
+						{
+							"name": "Log Out User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": "https://thinking-tester-contact-list.herokuapp.com/users/logout"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://thinking-tester-contact-list.herokuapp.com/users/me",
+						"description": "The DELETE User operation is not available through the UI."
+					},
+					"response": [
+						{
+							"name": "Delete User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": "https://thinking-tester-contact-list.herokuapp.com/users/me"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	]
+}
